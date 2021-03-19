@@ -52,23 +52,7 @@ if (isset($_GET['post_id'])) {
             <p><?php echo($singlePost['body']) ?></p>
                 
             </div><!-- /.blog-post -->
-
-            <div class="comments">
-                        <h3>Comments:</h3>
-
-                        <?php
-                        foreach ($comments as $comment) {
-                        ?>
-                            <div class="single-comment">
-                                <div>posted by: <strong><?php echo $comment['author'] ?></strong> on <?php echo $comment['created_at'] ?></div>
-                                <div>
-                                    <?php echo $comment['text'] ?>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
-
+            <?php include ('../main-content/comments.php');?>
         </div><!-- /.blog-main -->
         
     </div><!-- /.row -->
