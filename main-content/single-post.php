@@ -30,7 +30,7 @@ ini_set('display_errors', 1);
 include ('../template/header.php');
 
 include ('../db.php');
-// upit za single post
+// upit za single post i komentare
 if (isset($_GET['post_id'])) {
     $sql = "SELECT posts.id, posts.title, posts.body, posts.created_at, posts.author FROM posts WHERE posts.id = {$_GET['post_id']}";
     $singlePost = GetSinglePostFromDB($sql,$connection);
@@ -45,13 +45,29 @@ if (isset($_GET['post_id'])) {
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
 
-            <h2 class="blog-post-title"><?php echo ($singlePost[0]['title']) ?></h2>
+            <h2 class="blog-post-title"><?php echo ($singlePost['title']) ?></h2>
                 
-            <p class="blog-post-meta"><?php echo ($singlePost[0]['created_at']) ?> by <?php echo ($singlePost[0]['author']) ?></p>
+            <p class="blog-post-meta"><?php echo ($singlePost['created_at']) ?> by <?php echo ($singlePost['author']) ?></p>
                 
-            <p><?php echo($singlePost[0]['body']) ?></p>
+            <p><?php echo($singlePost['body']) ?></p>
                 
             </div><!-- /.blog-post -->
+
+            <div class="comments">
+                        <h3>Comments:</h3>
+
+                        <?php
+                        foreach ($comments as $comment) {
+                        ?>
+                            <div class="single-comment">
+                                <div>posted by: <strong><?php echo $comment['author'] ?></strong> on <?php echo $comment['created_at'] ?></div>
+                                <div>
+                                    <?php echo $comment['text'] ?>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
 
         </div><!-- /.blog-main -->
         

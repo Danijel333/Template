@@ -27,7 +27,14 @@ function GetSinglePostFromDB($sql, $connection)
   $statement = $connection->prepare($sql);
   $statement->execute();
   $statement->setFetchMode(PDO::FETCH_ASSOC);
+  return $statement->fetch();
+}
+// svi komentari
+function GetAllCommentsFromDB($sql, $connection)
+{
+  $statement = $connection->prepare($sql);
+  $statement->execute();
+  $statement->setFetchMode(PDO::FETCH_ASSOC);
   return $statement->fetchAll();
 }
-
 ?>
