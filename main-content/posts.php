@@ -1,4 +1,8 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,9 +48,9 @@ $allPosts = GetAllPostsFromDB($sql, $connection);
 
             <div class="blog-post">
 
-                <h2 class="blog-post-title"><a href="./main-content/single-post.php?post_id=<?php echo($post['id']) ?>"><?php echo($post['title']) ?></a></h2>
+                <h2 class="blog-post-title"><a href="main-content/single-post.php?post_id=<?php echo($post['id']) ?>"><?php echo($post['title']) ?></a></h2>
                 
-                <p class="blog-post-meta"><?php echo($post['created_at']); ?>
+                <p class="blog-post-meta"><?php echo($post['created_at']) ?> by <?php echo $post['author'] ?></p>
                 
                 <p><?php echo($post['body']) ?></p>
                 
